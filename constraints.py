@@ -9,12 +9,11 @@ class Constraints:
                          for worker in data['worker']
                          for hour in data['shift_hour'])
 
-        max_time = max(data['hour'])+1
         # Add the demand fulfillment constraint for each particular work type and for each hour
         for hour in data['hour']:
 
             # The available workers are who has started their shift before or at this hour
-            worker_hours = data['hour'][max(0, hour - data['shift'] + 1):min(hour + 1, max_time - data['shift'])]
+            worker_hours = data['hour'][max(0, hour - data['shift'] + 1):min(hour + 1, 25 - data['shift'])]
 
             for worker in data['worker']:
                 # Available workers for each particular work type 
